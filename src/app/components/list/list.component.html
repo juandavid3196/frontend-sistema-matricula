@@ -1,0 +1,47 @@
+<div class="container mt-4">
+    <div class="card edit">
+        <div class="card-body">
+          <span class="h3" style="font-weight: bold;">Estudiantes Matriculados</span>
+          <div class="row mt-3">
+            <div class="col-8">
+              <input type="search" class="form-control h-100" id="datatable-search-input" placeholder="buscar">
+            </div>
+            <div class="col-4">
+              <button class="btn btn-primary float-right text-b" [routerLink]="['/create']">Agregar&nbsp;<i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+            
+            <table class="table table-striped mt-5 edit">
+                <thead class="bg text-white">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Acudiente</th>
+                    <th>Grado</th>
+                    <th>grupo</th>
+                    <th>acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Jose</td>
+                    <td>Rios</td>
+                    <td>30 nov 2000</td>
+                    <td>Cra 21 #34-56</td>
+                    <td>6679212</td>
+                    <td>Daniel</td>
+                    <td>11</td>
+                    <td>b</td>
+                    <td><i class="fa-solid fa-pen-to-square fa-lg text-info mr-10"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa-solid fa-trash-can fa-lg text-danger"></i></td>
+                
+                  </tr>
+                
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
