@@ -24,7 +24,9 @@ html {
     color: #afafaf;
   }
   
-  
+  form {
+    margin-bottom: 20px;
+  }
   
   /* STRUCTURE */
   
@@ -32,7 +34,7 @@ html {
     display: flex;
     align-items: center;
     flex-direction: column; 
-    justify-content: center;
+    margin-top: 70px;
     width: 100%;
     min-height: 100%;
     padding: 20px;
@@ -42,7 +44,7 @@ html {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    height: 350px;
+    display: inline-block;
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -103,7 +105,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text],input[type=password] {
     background-color: #f6f6f6;
     color: #0d0d0d;
     padding: 15px 32px;
@@ -247,4 +249,21 @@ html {
   #icon {
     width:60%;
   }
+
+  .alerta{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    text-align: center;
+    margin: 2px auto;
+    background-color: #fccbcb;
+    border: 1px solid #cf1111;
+    color: #8a0f0f;
+    font-weight: bold;
+    height: 55px;
+    font-size: 13px;
+    
+}
   

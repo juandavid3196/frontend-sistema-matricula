@@ -2,16 +2,17 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
-  
+      
       <!-- Icon -->
       <div class="fadeIn first">
         <h3>Iniciar sesion</h3>
+        <span *ngIf="submitted && createLogin.invalid" class="alerta">DEBE INGRESAR AMBOS CAMPOS</span>
       </div>
   
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
+      <form [formGroup]="createLogin" (ngSubmit)="verificarLogin()">
+        <input type="text"  class="fadeIn second" name="user" placeholder="usuario" formControlName="user">
+        <input type="password"  class="fadeIn third" name="password" placeholder="contraseña" formControlName="password">
         <input type="submit" class=" btn btn-primary mt-3" value="Ingresar">
       </form>
 

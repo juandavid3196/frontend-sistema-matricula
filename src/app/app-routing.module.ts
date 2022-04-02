@@ -5,13 +5,12 @@ import { ListComponent } from './components/list/list.component';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path:'',redirectTo: 'list', pathMatch:'full'},
-  
+  {path:'',redirectTo: 'login', pathMatch:'full'},
   {path: 'list', component: ListComponent},
   {path: 'create', component: CreateComponent},
   {path: 'update/:id', component: CreateComponent},
   {path: 'login', component: LoginComponent},
-  {path:'**',redirectTo: 'list', pathMatch:'full'},
+  {path:'**',redirectTo: 'login', pathMatch:'full'},
 ];
 
 @NgModule({

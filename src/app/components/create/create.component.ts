@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,7 +47,16 @@ export class CreateComponent implements OnInit {
    }
 
   ngOnInit(): void {
+      this.checkToken();
       this.getIdEstudiante();
+  }
+
+  checkToken(){
+    if (localStorage.getItem('token')) {
+        this.router.navigate(['/create']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   aeEstudiante(){
@@ -111,7 +119,7 @@ export class CreateComponent implements OnInit {
     Adireccion : this.createStudent.value.Adireccion,
     Atelefono : this.createStudent.value.Atelefono };
 
-    this._estudanteService.updateEstudiante(estudiante,id).subscribe(data => {
+    this._estudanteService.updateEstudiante(estudiante,id).subscribe((data) => {
       this.toastr.success("El estudiante fue editado con exito" , "Estudiante editado",{
       positionClass : 'toast-top-right' 
       });

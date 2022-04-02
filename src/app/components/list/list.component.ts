@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list',
@@ -11,12 +13,22 @@ export class ListComponent implements OnInit {
   estudiantes: any[] = [];
 
   constructor(private _estudanteService :StudentService,
-              private toastr : ToastrService) {
+              private toastr : ToastrService,
+              private router : Router) {
 
    }
 
   ngOnInit(): void {
+    this.checkToken();
     this.getEstudiantes();
+  }
+
+  checkToken(){
+    if (localStorage.getItem('token')) {
+        this.router.navigate(['/list']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   getEstudiantes(){

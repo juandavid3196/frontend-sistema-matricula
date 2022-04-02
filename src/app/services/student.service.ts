@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { Student } from "../interfaces/student";
 @Injectable({
@@ -37,6 +36,6 @@ export class StudentService {
   //url/${id}
   updateEstudiante(student:Student,id:string){
     const path = `${this.URL}/update/${id}`;
-    return this.http.put<Student>(path,student);
+    return this.http.put(path,student);
   }
 }
