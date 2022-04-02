@@ -3,8 +3,9 @@
         <div class="col-lg-8">
             <div class="card text-center">
                 <div class="card-body">
-                    <span class="h3" style="font-weight: bold;">Agregar Estudiante</span>
-                    <form class="mt-4">
+                    <h3 style="font-weight: bold;">{{titulo}}</h3>
+                    <span *ngIf="submitted && createStudent.invalid" class="alerta">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+                    <form class="mt-4" [formGroup]="createStudent" (ngSubmit)="aeEstudiante()">
                         <div class="row mb-3">
                             <div class="col">
                                 <h6>Estudiante</h6>
@@ -12,67 +13,64 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Nombre">
+                                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Apellido">
+                                <input type="text" class="form-control" placeholder="Apellido" formControlName="apellido">
                             </div>
                         </div>
                        
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="date" class="form-control" placeholder="fecha de nacimiento">
+                                <input type="date" class="form-control" placeholder="fecha de nacimiento" formControlName="fechaNacimiento">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="direccion">
+                                <input type="text" class="form-control" placeholder="direccion" formControlName="direccion">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="telefono">
+                                <input type="text" class="form-control" placeholder="telefono" formControlName="telefono">
                             </div>
                         </div>
                         
                         <div class="row mb-3">
                             <div class="col">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
-                                      Grado
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                      <li>1</li>
-                                      <li>2</li>
-                                      <li>3</li>
-                                      <li>4</li>
-                                      <li>5</li>
-                                      <li>6</li>
-                                      <li>7</li>
-                                      <li>8</li>
-                                      <li>9</li>
-                                      <li>10</li>
-                                      <li>11</li>
-                                     </ul>
-                                  </div>
+                                <div class="form-group">
+                                    <select name="grado" class="form-control" formControlName="grado" required>
+                                        <option value="" selected>Grado</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Grupo
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                      <li>A</li>
-                                      <li>B</li>
-                                      <li>C</li>
-                                      <li>D</li>
-                                    </ul>
-                                  </div>
+                                <div class="form-group">
+                                    <select name="grupo" class="form-control" formControlName="grupo" required>
+                                        <option value="" selected>Grupo</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <hr>
@@ -83,35 +81,36 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Nombre">
+                                <input type="text" class="form-control" placeholder="Nombre" formControlName="Anombre">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Apellido">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input type="date" class="form-control" placeholder="fecha de nacimiento">
+                                <input type="text" class="form-control" placeholder="Apellido" formControlName="Aapellido">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="date" class="form-control" placeholder="fecha de nacimiento" formControlName="AfechaNacimiento">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="direccion">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="Aemail">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="telefono">
+                                <input type="text" class="form-control" placeholder="direccion" formControlName="Adireccion">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="telefono" formControlName="Atelefono">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <button class="btn btn-primary text-b">Agregar </button>
+                                <button class="btn btn-primary text-b" [routerLink]="['/list']">volver</button>&nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary text-b">Agregar </button>
                             </div>
                         </div>
 
