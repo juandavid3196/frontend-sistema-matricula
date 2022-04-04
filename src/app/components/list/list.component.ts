@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  estudiantes: any[] = [];
+  estudiantes : any[] = [];
 
   constructor(private _estudanteService :StudentService,
               private toastr : ToastrService,
@@ -24,9 +24,7 @@ export class ListComponent implements OnInit {
   }
 
   checkToken(){
-    if (localStorage.getItem('token')) {
-        this.router.navigate(['/list']);
-    } else {
+    if (!localStorage.getItem('token')) {
       this.router.navigate(['/login']);
     }
   }
@@ -39,6 +37,7 @@ export class ListComponent implements OnInit {
 
   deleteEstudiante(id:string){
     this._estudanteService.deleteEstudiante(id).subscribe((data) => {
+      this.router.navigate(['/list']);
       this.toastr.error("El estudiante fue eliminado con exito" , "Estudiante eliminado",{
         positionClass : 'toast-top-right'
       });

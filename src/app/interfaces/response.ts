@@ -1,4 +1,5 @@
 export interface Response {
     status: boolean,
-    response: any
+    token: string,
+    username: string
 }

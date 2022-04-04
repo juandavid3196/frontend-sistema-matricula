@@ -16,7 +16,6 @@
                 <thead class="bg text-white">
                   <tr>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Direccion</th>
                     <th>Telefono</th>
@@ -28,16 +27,15 @@
                 </thead>
                 <tbody>
                   <tr *ngFor=" let estudiante of estudiantes">
-                    <td>{{estudiante.nombre}}</td>
-                    <td>{{estudiante.apellido}}</td>
-                    <td>{{estudiante.fechaNacimiento}}</td>
-                    <td>{{estudiante.direccion}}</td>
-                    <td>{{estudiante.telefono}}</td>
-                    <td>{{estudiante.Acudiente}}</td>
-                    <td>{{estudiante.grado}}</td>
-                    <td>{{estudiante.grupo}}</td>
-                    <td><i class="fa-solid fa-pen-to-square fa-lg text-info mr-10" [routerLink]="['/editar',estudiante.id]"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i (click)="deleteEstudiante(estudiante.id)" class="fa-solid fa-trash-can fa-lg text-danger"></i></td>
+                    <td>{{estudiante.student.name}}</td>
+                    <td>{{estudiante.student.birthday}}</td>
+                    <td>{{estudiante.student.address}}</td>
+                    <td>{{estudiante.student.phone}}</td>
+                    <td>{{estudiante.student.attendant.name}}</td>
+                    <td>{{estudiante.student.grade}}</td>
+                    <td>{{estudiante.student.group}}</td>
+                    <td><i class="fa-solid fa-pen-to-square fa-lg text-info mr-10" [routerLink]="['/update/',estudiante._id]"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i (click)="deleteEstudiante(estudiante._id)" class="fa-solid fa-trash-can fa-lg text-danger"></i></td>
                   </tr>
                 
                 </tbody>

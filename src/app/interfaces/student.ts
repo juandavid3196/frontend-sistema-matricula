@@ -1,17 +1,21 @@
-export interface Student {
-    nombre: any;
-    apellido: any;
-    fechaNacimiento: any;
+export interface Enrollment {
+date: any;    
+student: {
+    _id:any;
+    name: any;
+    phone: any;
     email: any;
-    direccion: any;
-    telefono: any;
-    grado: any;
-    grupo: any;
-    Anombre: any;
-    Aapellido: any;
-    AfechaNacimiento: any;
-    Aemail: any;
-    Adireccion: any;
-    Atelefono: any;         
-
+    address: any;
+    birthday: any;
+    attendant :{
+        _id:any;
+        name: any;
+        phone: any;
+        email: any;
+        address: any;
+        birthday: any;
+    }
+    grade: any;
+    group: any;
+}
 }

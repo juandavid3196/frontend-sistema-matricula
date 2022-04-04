@@ -48,13 +48,13 @@ export class LoginComponent implements OnInit {
     }
     
     const login = {
-        usuario: this.createLogin.value.user,
+        username: this.createLogin.value.user,
         password: this.createLogin.value.password
     };
-
+    console.log(login);
     this._loginService.setlogin(login).subscribe(data => {
       if(data.status){
-        localStorage.setItem('token',data.response.token);
+        localStorage.setItem('token',data.token);
         this.toastr.success("Inicio de sesion exitoso" , "Bienvenido",{
           positionClass : 'toast-top-right'
           });

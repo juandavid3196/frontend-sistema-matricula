@@ -1,41 +1,49 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Student } from "../interfaces/student";
+import { Enrollment } from "../interfaces/student";
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private URL ='';
+  private URL ='http://localhost:8000';
   constructor(private http: HttpClient) { 
-
+  
   }
 
-  getAllEstudiante(){
-    const path = `${this.URL}/all`;
-    return this.http.get<Student[]>(path);
+  headers =  new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+    
+  })
+  
+  getAllEstudiante():Observable<any>{
+    const path = `${this.URL}/enrollments/`;
+    return this.http.get(path,{headers: this.headers});
   }
 
   //url + {id}
-  getEstudiante(id:string){
-    const path = `${this.URL}/all/${id}`;
-    return this.http.get<Student>(path);
+  getEstudiante(id:string):Observable<any>{
+    const path = `${this.URL}/enrollments/${id}`;
+    return this.http.get(path,{headers: this.headers});
   }
 
-  setEstudiante(student:Student) {
-    const path = `${this.URL}/create`;
-    return this.http.post(path,student);
+  setEstudiante(enrollment:Enrollment) {
+    const path = `${this.URL}/enrollments/`;
+    return this.http.post(path,enrollment,{headers: this.headers});
   }
 
-  deleteEstudiante(id :string){
-    const path = `${this.URL}/delete/${id}`;
-    return this.http.delete(path);
+  deleteEstudiante(id:string){
+    const path = `${this.URL}/enrollments/${id}`;
+    return this.http.delete(path,{headers: this.headers});
   }
   //url/${id}
  
   //url/${id}
-  updateEstudiante(student:Student,id:string){
-    const path = `${this.URL}/update/${id}`;
-    return this.http.put(path,student);
+  updateEstudiante(enrollment:Enrollment,id:string){
+    const path = `${this.URL}/enrollments/${id}`;
+    return this.http.patch(path,enrollment,{headers: this.headers});
   }
 }

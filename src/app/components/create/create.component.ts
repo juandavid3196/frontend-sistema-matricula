@@ -25,17 +25,16 @@ export class CreateComponent implements OnInit {
      ) {
 
     this.createStudent = this.fb.group({
-        
+        cedula : ['',Validators.required],
         nombre : ['',Validators.required],
-        apellido : ['',Validators.required],
         fechaNacimiento : ['',Validators.required],
         email : ['', [Validators.required,Validators.email]], 
         direccion : ['',Validators.required],
         telefono : ['',[Validators.required, Validators.maxLength(10)]],
         grado : ['', Validators.required],
         grupo : ['', Validators.required],
+        Acedula : ['',Validators.required],
         Anombre : ['',Validators.required],
-        Aapellido : ['',Validators.required],
         AfechaNacimiento : ['',Validators.required],
         Aemail : ['', [Validators.required,Validators.email]],
         Adireccion : ['',Validators.required],
@@ -43,18 +42,19 @@ export class CreateComponent implements OnInit {
 
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
-
+    console.log(this.id);
    }
 
   ngOnInit(): void {
       this.checkToken();
+      if(this.id != null){
       this.getIdEstudiante();
+      }
   }
 
   checkToken(){
-    if (localStorage.getItem('token')) {
-        this.router.navigate(['/create']);
-    } else {
+    if (!localStorage.getItem('token')) {
+
       this.router.navigate(['/login']);
     }
   }
@@ -75,23 +75,30 @@ export class CreateComponent implements OnInit {
 
   agregarEstudiante(){
     
-     const student = {
-     nombre : this.createStudent.value.nombre,
-     apellido : this.createStudent.value.apellido,
-     fechaNacimiento : this.createStudent.value.fechaNacimiento,
+     const enrollment = {
+     date: this.generarFecha(),
+     student :{  
+     _id:this.createStudent.value.cedula,
+     name: this.createStudent.value.nombre,
+     phone: this.createStudent.value.telefono,
      email : this.createStudent.value.email,
-     direccion : this.createStudent.value.direccion,
-     telefono : this.createStudent.value.telefono,
-     grado : this.createStudent.value.grado,
-     grupo : this.createStudent.value.grupo,
-     Anombre: this.createStudent.value.Anombre,
-     Aapellido : this.createStudent.value.Aapellido,
-     AfechaNacimiento : this.createStudent.value.AfechaNacimiento,
-     Aemail : this.createStudent.value.Aemail,
-     Adireccion : this.createStudent.value.Adireccion,
-     Atelefono : this.createStudent.value.Atelefono };
-
-    this._estudanteService.setEstudiante(student).subscribe( (e) =>{
+     address : this.createStudent.value.direccion,
+     birthday: this.createStudent.value.fechaNacimiento,
+     attendant: {
+        _id: this.createStudent.value.Acedula,
+        name: this.createStudent.value.Anombre,
+        phone : this.createStudent.value.Atelefono,
+        email : this.createStudent.value.Aemail,
+        address: this.createStudent.value.Adireccion,
+        birthday : this.createStudent.value.AfechaNacimiento,
+        
+         },
+    grade : this.createStudent.value.grado,
+    group : this.createStudent.value.grupo
+      }
+    };
+    console.log(enrollment);
+    this._estudanteService.setEstudiante(enrollment).subscribe( (e) =>{
       this.toastr.success("El estudiante fue registrado con exito" , "Estudiante registrado",{
         positionClass : 'toast-top-right'
       });
@@ -102,24 +109,31 @@ export class CreateComponent implements OnInit {
 
 
  editarEstudiante(id:string){
-
-  const estudiante : any = {
-    nombre : this.createStudent.value.nombre,
-    apellido : this.createStudent.value.apellido,
-    fechaNacimiento : this.createStudent.value.fechaNacimiento,
+  const enrollment = {
+    date: this.generarFecha(),
+    student :{  
+    _id:this.createStudent.value.cedula,
+    name: this.createStudent.value.nombre,
+    phone: this.createStudent.value.telefono,
     email : this.createStudent.value.email,
-    direccion : this.createStudent.value.nombre.direccion,
-    telefono : this.createStudent.value.nombre.telefono,
-    grado : this.createStudent.value.grado,
-    grupo : this.createStudent.value.grupo,
-    Anombre : this.createStudent.value.nombre.Anombre,
-    Aapellido : this.createStudent.value.Aapellido,
-    AfechaNacimiento : this.createStudent.value.AfechaNacimiento,
-    Aemail : this.createStudent.value.Aemail,
-    Adireccion : this.createStudent.value.Adireccion,
-    Atelefono : this.createStudent.value.Atelefono };
+    address : this.createStudent.value.direccion,
+    birthday: this.createStudent.value.fechaNacimiento,
+    attendant: {
+       _id: this.createStudent.value.Acedula,
+       name: this.createStudent.value.Anombre,
+       phone : this.createStudent.value.Atelefono,
+       email : this.createStudent.value.Aemail,
+       address: this.createStudent.value.Adireccion,
+       birthday : this.createStudent.value.AfechaNacimiento,
+       
+        },
+   grade : this.createStudent.value.grado,
+   group : this.createStudent.value.grupo
+     }
+   };
+  
 
-    this._estudanteService.updateEstudiante(estudiante,id).subscribe((data) => {
+    this._estudanteService.updateEstudiante(enrollment,id).subscribe((data) => {
       this.toastr.success("El estudiante fue editado con exito" , "Estudiante editado",{
       positionClass : 'toast-top-right' 
       });
@@ -128,29 +142,39 @@ export class CreateComponent implements OnInit {
  }
 
  getIdEstudiante(){
-   this.titulo = 'Registar Estudiante';
-
+   this.titulo = 'Editar Estudiante';
+   
    if(this.id !== null){
     this._estudanteService.getEstudiante(this.id).subscribe(data=>{
         this.createStudent.setValue({
-          nombre: data.nombre,
-          apellido: data.apellido,
-          fechaNacimiento: data.fechaNacimiento,
-          email: data.email,
-          direccion: data.direccion,
-          telefono: data.telefono,
-          grado: data.grado,
-          grupo: data.grupo,
-          Anombre: data.Anombre,
-          Aapellido: data.Aapellido,
-          AfechaNacimiento: data.AfechaNacimiento,
-          Aemail: data.Aemail,
-          Adireccion: data.Adireccion,
-          Atelefono: data.Atelefono
+          cedula: data.student._id,
+          nombre: data.student.name,
+          fechaNacimiento: data.student.birthday,
+          email: data.student.email,
+          direccion: data.student.address,
+          telefono: data.student.phone,
+          grado: data.student.grade,
+          grupo: data.student.group,
+          Acedula: data.student.attendant._id,
+          Anombre: data.student.attendant.name,
+          AfechaNacimiento: data.student.attendant.birthday,
+          Aemail: data.student.attendant.email,
+          Adireccion: data.student.attendant.address,
+          Atelefono: data.student.attendant.phone
         });
       });
     }
   }
+
+    generarFecha() {
+      let d  = new Date();
+      let dia = d.getDay();
+      let mes = d.getMonth();
+      let ano = d.getFullYear();
+      let fecha = `${ano}-${mes}-${dia}`;
+      return fecha;
+    }
+
 
  
 }
