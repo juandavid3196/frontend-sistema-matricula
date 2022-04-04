@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, UrlSegment, ActivatedRoute } from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+   
+  ruta :string = '';
 
-  constructor() { }
+  constructor(private router: Router,
+              private route : ActivatedRoute) { 
+                this.router.events.subscribe(
+                  (event: any) => {
+                    if (event instanceof NavigationEnd) {
+                       this.ruta = this.router.url;
+                    }
+                  }
+                );
 
-  ngOnInit(): void {
   }
 
-}
+  ngOnInit(): void {
+    
+  }
+
+
+  cerrarSesion(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+ }
+
+   
+

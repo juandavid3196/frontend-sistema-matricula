@@ -37,10 +37,10 @@ export class ListComponent implements OnInit {
 
   deleteEstudiante(id:string){
     this._estudanteService.deleteEstudiante(id).subscribe((data) => {
-      this.router.navigate(['/list']);
       this.toastr.error("El estudiante fue eliminado con exito" , "Estudiante eliminado",{
         positionClass : 'toast-top-right'
       });
+      this.router.navigate(['/list']);
     });
   }
 }

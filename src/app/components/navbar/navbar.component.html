@@ -1,5 +1,6 @@
 <nav class="navbar barra">
     <div class="container-fluid">
       <span class="text-white">Sistema de Matricula</span>
+      <button *ngIf="ruta != '/login' " type="button" (click)="cerrarSesion()" class=" btn btn-danger">Salir&nbsp;<i class="fa-solid fa-arrow-right-from-bracket"></i></button>
     </div>
   </nav>
