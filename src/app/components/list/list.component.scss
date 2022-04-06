@@ -34,4 +34,22 @@ i {
   
 }
 
+th {
+    text-align: center;
+}
+td {
+    text-align: center;
+}
 
+@media only screen and (max-width: 768px){
+    .text-b{
+        margin: 8px auto 0px auto;
+        float: inherit;
+        display: flex;
+    }
+
+    .search-b {
+        height: 50px!important;
+    }
+
+}

@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
   estudiantes : any[] = [];
+  filterPost = '';
 
   constructor(private _estudanteService :StudentService,
               private toastr : ToastrService,
@@ -40,7 +41,7 @@ export class ListComponent implements OnInit {
       this.toastr.error("El estudiante fue eliminado con exito" , "Estudiante eliminado",{
         positionClass : 'toast-top-right'
       });
-      this.router.navigate(['/list']);
+      this.getEstudiantes();
     });
   }
 }

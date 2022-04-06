@@ -16,6 +16,7 @@ export class CreateComponent implements OnInit {
   submitted =  false;
   id : string | null;    
   titulo = 'Registrar Estudiante';
+  estado = 'Agregar';
   
   constructor(private fb : FormBuilder,
      private _estudanteService:StudentService,
@@ -134,7 +135,7 @@ export class CreateComponent implements OnInit {
   
 
     this._estudanteService.updateEstudiante(enrollment,id).subscribe((data) => {
-      this.toastr.success("El estudiante fue editado con exito" , "Estudiante editado",{
+      this.toastr.success("El estudiante fue editado con exito" , "Registro editado",{
       positionClass : 'toast-top-right' 
       });
       this.router.navigate(['/list']);
@@ -143,7 +144,7 @@ export class CreateComponent implements OnInit {
 
  getIdEstudiante(){
    this.titulo = 'Editar Estudiante';
-   
+   this.estado = 'Editar';
    if(this.id !== null){
     this._estudanteService.getEstudiante(this.id).subscribe(data=>{
         this.createStudent.setValue({

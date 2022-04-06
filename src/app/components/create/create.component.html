@@ -3,6 +3,7 @@
         <div class="col-lg-8">
             <div class="card text-center">
                 <div class="card-body">
+                    <button class="btn btn-primary f-l" [routerLink]="['/list']"><i class="fa-solid fa-circle-arrow-left"></i></button>
                     <h3 style="font-weight: bold;">{{titulo}}</h3>
                     <span *ngIf="submitted && createStudent.invalid" class="alerta">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
                     <form class="mt-4" [formGroup]="createStudent" (ngSubmit)="aeEstudiante()">
@@ -33,16 +34,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12">
                                 <input type="text" class="form-control" placeholder="telefono" formControlName="telefono">
                             </div>
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12 mt">
                                 <input type="text" class="form-control" placeholder="cedula" formControlName="cedula">
                             </div>
                         </div>
                         
                         <div class="row mb-3">
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <select name="grado" class="form-control" formControlName="grado" required>
                                         <option value="" selected>Grado</option>
@@ -60,7 +61,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12 mt">
                                 <div class="form-group">
                                     <select name="grupo" class="form-control" formControlName="grupo" required>
                                         <option value="" selected>Grupo</option>
@@ -101,17 +102,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12">
                                 <input type="text" class="form-control" placeholder="telefono" formControlName="Atelefono">
                             </div>
-                            <div class="col">
+                            <div class="col-md-6 col-xs-12 mt">
                                 <input type="text" class="form-control" placeholder="cedula" formControlName="Acedula">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <button class="btn btn-primary text-b" [routerLink]="['/list']">volver</button>&nbsp;&nbsp;
-                                <button type="submit" class="btn btn-primary text-b">Agregar </button>
+                                <button type="submit" class="btn btn-primary text-b">{{estado}}</button>
                             </div>
                         </div>
 
